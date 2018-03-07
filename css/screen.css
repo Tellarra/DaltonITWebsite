@@ -26,15 +26,17 @@ a:visited { color: #65b1ff;}
 
 a.btn { font-size: 1.2em; text-decoration: none; color: #fff; border: 1px solid #fff; padding: 4px 15px; transition: background-color .5s;}
 a.btn:hover { background-color: rgba(0,0,0,.3);}
+
 /* Header */
 
-header { height: 430px; background: #cf0004 url(../images/banner_1200.jpg) no-repeat center bottom; position: relative;}
+header { height: 430px; background: #cf0004 url(../images/bannerDaltonIt.png) no-repeat center bottom; position: relative;}
 
 header a.logo { 
+	z-index: 1;
 	position: absolute; 
-	display: block; width: 160px; height: 66px;
-	background: url(../images/logo.svg) no-repeat 0 0; background-size: contain;
-	top: 15px; left: 20px;
+	display: block; width: 160px; height: 100px;
+	background: url(../images/logov2.png) no-repeat; background-size: contain;
+	top: 5px; left: 20px;
 }
 
 header a.logo span { display: none; }
@@ -113,6 +115,38 @@ nav {
 	width: 100%;
 }
 
+nav::after { content: ""; display: block; clear: both; }
+
+nav ul { list-style: none; margin: 0; padding: 0px; }
+
+nav ul li:hover { background-color: #2b0306; }
+nav ul li:hover > ul { display: block;}
+
+nav ul li a { 
+	display: inline-block;
+	color: #fff;
+	padding: 10px 20px;
+	text-decoration: none;
+	width: 125px;
+	position: relative;
+}
+
+nav ul li a:visited { color: #fff; }
+nav ul li a:hover { background-color: #6d0911; }
+
+/* nav ul ul { position: absolute; top: 100%; background-color: #2b0306; display: none; }
+
+nav ul ul li { position: relative; }
+
+nav ul ul ul { left: 100%; top: 0px; }*/
+
+
+
+/* top-level */
+
+nav > ul { padding-left: 200px; }
+nav > ul > li { float: left; }
+nav > ul > li > a { width: auto; padding: 10px 20px 15px 20px;}
 
 
 
