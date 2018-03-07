@@ -66,8 +66,8 @@ section.main aside .content.tools { background-image: url(../images/icon_gear.sv
 
 /* Section - Atmosphere */
 
-section.atmosphere { background-color: #cc6633; padding-top: 30px; padding-bottom:  30px; color: #fff; }
-section.atmosphere article { padding: 0 20px 0 515px; background: url(../images/photo_lounge.jpg) no-repeat 0 5px; min-height: 220px; }
+section.atmosphere { background-color:darkgrey; padding-top: 30px; padding-bottom:  30px; color: #000000; }
+section.atmosphere article { padding: 0 20px 0 515px; background: url(../images/learn_More.jpg) no-repeat 0 5px; min-height: 220px; }
 
 /* Section - How-to */
 
