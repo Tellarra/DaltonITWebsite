@@ -14,7 +14,7 @@ body {
 
 /* Text */
 
-h1 { margin: 0 0 1em 0; font-size: 2.8em; font-weight: 700; }
+h1 { margin: 0 0 1em 0; font-size: 2.8em; font-weight: 700; padding-top: 20px;}
 h2 { margin: 0 0 .5em 0; font-size: 1.6em; font-weight: 700; line-height: 1.1em; }
 h3 { margin: 0 0 .5em 0; font-size: 1.3em; font-weight: 700; }
 h4 { margin: 0 0 .5em 0; font-size: 1em; font-weight: 700; }
@@ -67,7 +67,12 @@ section.main aside .content.tools { background-image: url(../images/icon_gear.sv
 /* Section - Atmosphere */
 
 section.atmosphere { background-color:darkgrey; padding-top: 30px; padding-bottom:  30px; color: #000000; }
-section.atmosphere article { padding: 0 20px 0 515px; background: url(../images/learn_More.jpg) no-repeat 0 5px; min-height: 220px; }
+#learn{ padding: 0 20px 0 515px; background: url(../images/learn_More.jpg) no-repeat 0 5px; min-height: 220px; }
+
+#upgrade { padding: 0 20px 0 515px; background: url(../images/upgrade.jpg)no-repeat 0 5px; min-height: 220px; }
+#design { padding: 0 20px 0 515px; background: url(../images/design.jpg)no-repeat 0 5px; min-height: 220px; }
+#maintenance { padding: 0 20px 0 515px; background: url(../images/maintenance.jpg)no-repeat 0 5px; min-height: 220px; }
+#instal { padding: 0 20px 0 515px; background: url(../images/installation.jpg)no-repeat 0 5px; min-height: 220px;  }
 
 /* Section - How-to */
 
