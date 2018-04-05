@@ -27,18 +27,27 @@
 			<label class="label">Gender</label>
 			<ul class="options">
 			  <li class="option">
-				<input class="option-input" id="option-0" name="option" type="radio" value="0">
-				<label class="option-label" for="option-0">Female</label>
+				<input class="option-input" id="optF" name="option" type="radio" value="Female">
+				<label class="option-label" for="optF">Female</label>
 			  </li>
 			  <li class="option">
-				<input class="option-input" id="option-1" name="option" type="radio" value="1">
-				<label class="option-label" for="option-1">Male</label>
+				<input class="option-input" id="optM" name="option" type="radio" value="Male">
+				<label class="option-label" for="optM">Male</label>
 			  </li>
 			</ul>
 		  </div>
 		  <p class="field half">
 			<label class="label" for="txtCompany">Company Name</label>
 			<input class="text-input" id="txtCompany" name="txtCompany" required type="text" value="">
+		  </p>
+		  <p class="field half">
+			<label class="label" for="select">Position</label>
+			<select class="select" id="select">
+			  <option selected value=""></option>
+			  <option value="ceo">CEO</option>
+			  <option value="front-end">Admin staff</option>
+			  <option value="back-end">Employee</option>
+			</select>
 		  </p>
 		  <p class="field required">
 			<label class="label required" for="txtAddress">Address</label>
@@ -120,108 +129,9 @@
 			<textarea class="textarea" cols="50" id="about" name="about" rows="4"></textarea>
 		  </p>
 		  <p class="field half">
-			<label class="label" for="select">Position</label>
-			<select class="select" id="select">
-			  <option selected value=""></option>
-			  <option value="ceo">CEO</option>
-			  <option value="front-end">Admin staff</option>
-			  <option value="back-end">Employee</option>
-			</select>
-		  </p>
-		  <p class="field half">
 			<input class="button" type="submit" value="Send">
 		  </p>
 		</form>
-			<!--
-				<section class="atmosphere">
-					<form id="details" method="post" action="" class="field">
-						<div class="field-required">
-							<div class="input-block">
-								<label for="fName">First Name:</label>
-								<input type="text" name="fName" id="fName">
-							</div>
-						</div>
-						<div class="field-required">
-							<div class="input-block">
-								<label for="lName">Last Name:</label>
-								<input type="text" name="lName" id="lName">
-							</div>
-						</div>
-						<div class="field-required">
-							<div class="input-block">
-								<label for="birthDate">Birthdate:</label>
-								<input type="date" name="birthDate" id="birthDate">
-							</div>
-						</div>
-							<label>Gender:</label>
-						<div class="containerRad">
-							<input type="radio" name="radGender" value="Female" id="radGenderF">
-							<label for="radGenderF"><span></span>Female</label>
-						<br>
-							<input type="radio" name="radGender" value="Male" id="radGenderM">
-							<label for="radGenderM"><span></span>Male</label>
-						<br>
-							<input type="radio" name="radGender" value="Other" id="radGenderO">
-							<label for="radGenderO"><span></span>Other</label>
-					  	</div>
-					  <br>
-						<div class="col-sm-12">
-							<div class="input-block">
-								<label for="txtPhone">Your Phone Number:</label>
-								<input type="tel" name="txtPhone" id="txtPhone">
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<div class="input-block">
-								<label for="txtCname">Company Name:</label>
-								<input type="text" name="txtCname" id="txtCname">
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<div class="input-block">
-								<label for="address">Address of your company:</label>
-								<textarea name="address" id="address" rows="4" cols="50"></textarea>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<div class="input-block">
-								<label for="addCountry">Country of your company:</label>
-								<select name="addCountry" id="addCountry">
-									<option value="Australia">Australia</option>
-									<option value="France">France</option>
-									<option value="United States">United States</option>
-									<option value="Canada">Canada</option>
-									<option value="China">China</option>
-									<option value="Japan">Japan</option>
-									<option value="England">England</option>
-									<option value="Italy">Italy</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<div class="input-block">
-								<label for="txtCCity">City:</label>
-								<input type="text" name="txtCCity" id="txtCCity">
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<div class="input-block">
-								<label for="txtCode">Post code:</label>
-								<input type="text" name="txtCode" id="txtCode">
-							</div>
-						</div>
-						<div>
-    						<input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-    						<label for="subscribeNews"><span></span>Souhaitez-vous vous abonner à la newsletter ?</label>
-  						</div>
-  						<br />
-  						<div>
-  							<input type="submit" value="Submit" class="btn-style">
-  							<input type="reset" value="Reset" class="btn-style">
-  						</div>
-					</form>
-				</section>
-				-->
 			<nav>
 				<ul>
 					<li>
