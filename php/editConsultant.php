@@ -139,10 +139,10 @@
 		<nav>
 			<ul>
 				<li>
-					<a title="About Us" href="html/aboutUs.html">About Us</a>
+					<a title="About Us" href="../html/aboutUs.html">About Us</a>
 				</li>
 				<li>
-					<a title="Contact Us" href="html/contactUs.html">Contact Us</a>
+					<a title="Contact Us" href="../html/contactUs.html">Contact Us</a>
 				</li>
 				<?php
 				//include some required files
@@ -153,7 +153,7 @@
 
 				if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
 					echo "<li>";
-					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
+					echo "<a title='Login' href='../html/loginPage.php'>Login</a>";
 					echo "</li>";
 					//echo "Cookie named '" . $cookie_name . "' is not set!";
 				} else {

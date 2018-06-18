@@ -133,10 +133,10 @@
 		<nav>
 			<ul>
 				<li>
-					<a title="About Us" href="html/aboutUs.html">About Us</a>
+					<a title="About Us" href="../html/aboutUs.html">About Us</a>
 				</li>
 				<li>
-					<a title="Contact Us" href="html/contactUs.html">Contact Us</a>
+					<a title="Contact Us" href="../html/contactUs.html">Contact Us</a>
 				</li>
 				<?php
 				//include some required files

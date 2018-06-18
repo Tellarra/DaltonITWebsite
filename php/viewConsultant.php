@@ -68,9 +68,9 @@
 			}
 
 			echo "</table>";
-			echo "<input type='submit' value='Add a Consultant' class='btn btn-primary'/>";
 			echo "<form action='../php/addConsultant.php' method='post'>";
 			echo "</div>";
+			echo "<input type='submit' value='Add a Consultant' class='btn btn-primary'/>";
 			echo "</form>";
 			echo "<p></p>";
 			
