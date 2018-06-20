@@ -18,7 +18,7 @@
 		require_once( "../DAL/db_functions.php" );
 
 		echo "<h2 style='text-align:center'>Are you sure you want to delete the <em>" . $_GET[ 'ID' ] . "</em> record?</h2>";
-	
+
 		echo "<form action='delete_confirm.php' method='GET'>";
 		echo "<div class='grid'>";
 		echo "<input type='submit' class='btn btn-primary' name='okDelete' value='Delete Record'/><br /><br />";

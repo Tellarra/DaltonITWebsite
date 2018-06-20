@@ -10,7 +10,7 @@
 <body>
 	<div id="page">
 		<header>
-			<a class="logo" title="Dalton It" href="index.php"><span>Dalton It</span></a>
+			<a class="logo" title="Dalton It" href="../index.php"><span>Dalton It</span></a>
 		</header>
 		<p></p>
 		<h2>View Consultant Details</h2>
@@ -71,6 +71,7 @@
 			echo "<form action='../php/addConsultant.php' method='post'>";
 			echo "</div>";
 			echo "<input type='submit' value='Add a Consultant' class='btn btn-primary'/>";
+			echo "<input type='submit' name='logOut' value='Log out' class='btn btn-danger'/>";
 			echo "</form>";
 			echo "<p></p>";
 			
@@ -80,36 +81,38 @@
 		<nav>
 			<ul>
 				<li>
-					<a title="About Us" href="html/aboutUs.html">About Us</a>
+					<a title="About Us" href="../html/aboutUs.php">About Us</a>
 				</li>
 				<li>
-					<a title="Contact Us" href="html/contactUs.html">Contact Us</a>
+					<a title="Contact Us" href="../html/contactUs.php">Contact Us</a>
 				</li>
 				<?php
 				//include some required files
 				require_once( "../DAL/db_functions.php" );
 				require_once( "../BLL/validate_data.php" );
-
+				
+				if($_POST['logOut']) {
+					if(isset($_COOKIE['Dalton_IT_auth'])) {
+        				setcookie('Dalton_IT_auth', '', time()-7000000, '/assignement01');
+					}
+				}
 				global $_COOKIE;
 
 				if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
 					echo "<li>";
-					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
+					echo "<a title='Login' href='../html/loginPage.php'>Login</a>";
 					echo "</li>";
-					//echo "Cookie named '" . $cookie_name . "' is not set!";
 				} else {
-					//echo "Cookie '" . $cookie_name . "' is set!<br>";
-					//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
 					echo "<li>";
-					echo "<a title='View Consultant Records' href='../php/viewConsultant.php'>View Consultant</a>";
+					echo "<a title='View Consultant Records' href='viewConsultant.php'>View Consultant</a>";
 					echo "</li>";
 
 					echo "<li>";
-					echo "<a title='View Project Records' href='../php/viewProject.php'>View Project</a>";
+					echo "<a title='View Project Records' href='viewProject.php'>View Project</a>";
 					echo "</li>";
 
 					echo "<li>";
-					echo "<a title='View Project Consultant Record' href='../php/viewProjectStaff.php'>View Project Consultant</a>";
+					echo "<a title='View Project Consultant Record' href='viewProjectStaff.php'>View Project Consultant</a>";
 					echo "</li>";
 				}
 				?>

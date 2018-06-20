@@ -14,6 +14,7 @@
 			<a class="logo" title="Dalton It" href="index.php"><span>Dalton It</span></a>
 		</header>
 		<p></p>
+		<h2 style="text-align: center">Add a Consultant</h2>
 		<?php
 		//includ some required files
 		require_once( "../DAL/db_functions.php" );

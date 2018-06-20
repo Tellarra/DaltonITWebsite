@@ -25,7 +25,7 @@
 		$booRole = $booHours_Worked = "";
 
 		$booOk = 1; //to check everything
-
+		
 		if ( isset( $_POST[ 'submit' ] ) ) {
 			validateProjectStaff( "editRecord" );
 			//insertProject();
@@ -48,10 +48,14 @@
 				$strHours_Worked = $arrRows[ "Hours_Worked" ];
 			}
 		}
+		
+		if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( "Location: ../php/viewProjectStaff.php" );
+		}
 
 		//create table project details
 		echo "<form action='editProjectStaff.php' method='POST'>";
-		echo "<table id='dalton'>";
+		echo "<table class='table table-stripped table-bordered'>";
 
 		echo "<tr><th>Consultant ID</th>";
 		echo "<td><select name='strConsultant_Id'>";
@@ -95,11 +99,28 @@
 		echo "</tr>";
 
 		echo "<tr><th>Role</th>";
-		echo "<td><input type='text' name='strRole' size='20' value='" . $strRole . "' /><td>";
-		if ( $booRole ) {
-			echo "<td>Please enter the role of the consultant.</td>";
+		echo "<td><select name='strRole'>";
+		//Read Consultant List for selecting Project Manager
+		readQuery( "d_project_consultant" );
+		if ( $numRecords == 0 ) {
+			echo "Enter Manager Details in Consultant Table First.";
+			$booOk = 0;
+		} else {
+//			while ( $arrRows = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+//				console_log($strRole);
+//				$selected = ;
+//				console_log(" toto => ", $arrRows[ 'Role' ]);
+//			}
+			//console_log($selected);
+			echo "<option " . (($strRole == "Programmer") ? "selected=\"$strRole\"" : "") . " value='Programmer'>Programmer</option>";
+			echo "<option " . (($strRole == "Analyst") ? "selected=\"$strRole\"" : "") . " value='Analyst'>Analyst</option>";
+			echo "<option " . (($strRole == "Software Architect") ? "selected=\"$strRole\"" : "") . " value='Software Architect'>Software Architect</option>";
+			echo "<option " . (($strRole == "Lead") ? "selected=\"$strRole\"" : "") . " value='Lead'>Project Manager</option>";
+			echo "<option " . (($strRole == "Designer") ? "selected=\"$strRole\"" : "") . " value='Designer'>Database Designer</option>";
+			echo "<option " . (($strRole == "Networker") ? "selected=\"$strRole\"" : "") . " value='Networker'>Network Engineer</option>";
+			echo "<option " . (($strRole == "Database administrator") ? "selected=\"$strRole\"" : "") . " value='Database administrator'>Database administrator</option>";
+			echo "</select></td></tr>";
 		}
-		echo "</tr>";
 
 		echo "<tr><th>Hours worked</th>";
 		echo "<td><input type='text' name='strHours_Worked' size='20' value='" . $strHours_Worked . "' /><td>";
@@ -108,16 +129,19 @@
 		}
 		echo "</tr>";
 
-		echo "<tr><td></td><td><input type='submit' name='submit' value='Edit Project Staff Details' /><td></tr>";
-		echo "</table></form>";
+		echo "<tr></tr>";
+		echo "</table><div class='grid'>";
+		echo "<input type='submit' class='btn btn-primary' name='submit' value='Edit Project Staff Details' />";
+		echo "<br /><input type='submit' class='btn btn-default' name='cancel' value='Go back to Project Staff Details' />";
+		echo "</form>";
 		?>
 		<nav>
 			<ul>
 				<li>
-					<a title="About Us" href="../html/aboutUs.html">About Us</a>
+					<a title="About Us" href="../html/aboutUs.php">About Us</a>
 				</li>
 				<li>
-					<a title="Contact Us" href="../html/contactUs.html">Contact Us</a>
+					<a title="Contact Us" href="../html/contactUs.php">Contact Us</a>
 				</li>
 				<?php
 				//include some required files

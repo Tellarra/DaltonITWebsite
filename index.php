@@ -45,10 +45,10 @@
 		<nav>
 			<ul>
 				<li>
-					<a title="About Us" href="html/aboutUs.html">About Us</a>
+					<a title="About Us" href="html/aboutUs.php">About Us</a>
 				</li>
 				<li>
-					<a title="Contact Us" href="html/contactUs.html">Contact Us</a>
+					<a title="Contact Us" href="html/contactUs.php">Contact Us</a>
 				</li>
 				<?php
 					//include some required files
@@ -66,15 +66,15 @@
 						//echo "Cookie '" . $cookie_name . "' is set!<br>";
 						//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
 						echo "<li>";
-						echo "<a title='View Consultant Records' href='../php/viewConsultant.php'>View Consultant</a>";
+						echo "<a title='View Consultant Records' href='php/viewConsultant.php'>View Consultant</a>";
 						echo "</li>";
 						
 						echo "<li>";
-						echo "<a title='View Project Records' href='../php/viewProject.php'>View Project</a>";
+						echo "<a title='View Project Records' href='php/viewProject.php'>View Project</a>";
 						echo "</li>";
 						
 						echo "<li>";
-						echo "<a title='View Project Consultant Record' href='../php/viewProjectStaff.php'>View Project Consultant</a>";
+						echo "<a title='View Project Consultant Record' href='php/viewProjectStaff.php'>View Project Consultant</a>";
 						echo "</li>";
 					}
 				?>

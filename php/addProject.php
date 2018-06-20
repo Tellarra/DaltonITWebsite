@@ -14,6 +14,7 @@
 			<a class="logo" title="Dalton It" href="index.php"><span>Dalton It</span></a>
 		</header>
 		<p></p>
+		<h2 style="text-align: center">Add a Project</h2>
 		<?php
 		//includ some required files
 		require_once( "../DAL/db_functions.php" );
@@ -116,14 +117,10 @@
 			$booOk = 0;
 		} else {
 			while ( $arrRows = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-				// $arrCList.push(array($arrRows['Consultant_Id'], $arrRows['First_Name'], $arrRows['Last_Name']));
 				echo "<option value=\"{$arrRows['Client_No']}\">{$arrRows['Client_No']} - {$arrRows['Company_Name']}</option>";
-				//$selOptionListClient .= "<option value='".$arrRows['Client_No']."'>";
-				//$selOptionListClient .= $arrRows['Client_No']." - ".$arrRows['Company_Name']."</option>";
 
 			}
 			echo "</select></td></tr>";
-			//echo $selOptionListClient;
 		}
 
 		echo "<tr></tr>";
@@ -133,10 +130,10 @@
 		<nav>
 			<ul>
 				<li>
-					<a title="About Us" href="../html/aboutUs.html">About Us</a>
+					<a title="About Us" href="../html/aboutUs.php">About Us</a>
 				</li>
 				<li>
-					<a title="Contact Us" href="../html/contactUs.html">Contact Us</a>
+					<a title="Contact Us" href="../html/contactUs.php">Contact Us</a>
 				</li>
 				<?php
 				//include some required files

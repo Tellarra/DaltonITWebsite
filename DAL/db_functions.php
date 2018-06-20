@@ -14,6 +14,7 @@ $dbConnection = NULL;
 $stmt = NULL;
 $numRecords = NULL;
 
+
 // Establish MySQL Connection
 function connect() {
 	global $user, $password, $dsn, $dbConnection; // Required to access global Variables
@@ -30,6 +31,7 @@ function connect() {
 	}
 }
 
+
 //Selecting all records from a table
 function readQuery($table) {
 	global $numRecords, $dbConnection, $stmt;
@@ -37,7 +39,6 @@ function readQuery($table) {
 	connect();
 	//Create string
 	$sqlStr = "SELECT * FROM " . $table;
-
 	//Run Query
 	try {
 		$stmt = $dbConnection->query( $sqlStr );
@@ -236,7 +237,7 @@ function insertProjectStaff() {
 			//die("Error executing the query: $sqlStr");
 			//$booOK = 0;
 		} else {
-			echo "<p><em>The Project;<strong> $strProject_No </strong>has been added to the database.</em></p>";
+			echo "<p><em>The Consultant;<strong> $strConsultant_Id </strong>has been added to the database.</em></p>";
 		}
 	} catch ( PDOException $error ) {
 		//display error if could not run query

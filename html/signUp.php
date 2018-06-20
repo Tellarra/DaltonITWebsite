@@ -21,19 +21,17 @@
 <body id="body-login">
 	<div id="page">
 		<header>
-			<a class="logo" title="Dalton It" href="../index.html"><span>Dalton It</span></a>
+			<a class="logo" title="Dalton It" href="../index.php"><span>Dalton It</span></a>
 		</header>
 		<div class="grid">
-			<?php 
+<?php 
 	//include some required files
 	require_once("../DAL/db_functions.php");
 	require_once("../BLL/validate_data.php");
 
 	$userName = $passwordUser = $confirm_password = "";
 	$username_err = $password_err = $confirm_password_err = "";
-	
-	
-	$booOk = 1;
+
 	if(isset($_POST['submit']) ) {
 		console_log("submitted");
 		console_log($userName, $passwordUser, $confirm_password);
@@ -71,10 +69,10 @@
 			<nav>
 				<ul>
 					<li>
-						<a title="About Us" href="html/aboutUs.html">About Us</a>
+						<a title="About Us" href="html/aboutUs.php">About Us</a>
 					</li>
 					<li>
-						<a title="Contact Us" href="html/contactUs.html">Contact Us</a>
+						<a title="Contact Us" href="html/contactUs.php">Contact Us</a>
 					</li>
 					<?php
 					//include some required files

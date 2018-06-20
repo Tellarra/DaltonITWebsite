@@ -58,7 +58,7 @@ if ( isset( $_POST[ 'submit' ] ) ) {
 	echo "<input type='submit' class='btn btn-primary' name='submit' value='Login'><br /><br />";
 	echo "<input type='reset' class='btn btn-default' value='Reset'>";
 	echo "</div>";
-	echo "<p>Already have an account? <a href='signUp.php'>Login here</a>.</p>";
+	echo "<p>You don't have an account? <a href='signUp.php'>Login here</a>.</p>";
 	echo "</form></div></div>";
 ?>
 <nav>
@@ -80,10 +80,7 @@ if ( isset( $_POST[ 'submit' ] ) ) {
 			echo "<li>";
 			echo "<a title='Login' href='html/loginPage.php'>Login</a>";
 			echo "</li>";
-			//echo "Cookie named '" . $cookie_name . "' is not set!";
 		} else {
-			//echo "Cookie '" . $cookie_name . "' is set!<br>";
-			//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
 			echo "<li>";
 			echo "<a title='View Consultant Records' href='../php/viewConsultant.php'>View Consultant</a>";
 			echo "</li>";

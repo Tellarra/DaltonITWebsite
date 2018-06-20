@@ -105,7 +105,7 @@ function validateConsultant( $saveaction ) {
 
 		if ( $booOk ) {
 			//Redirect to the view Consultant page if no errors occurred
-			header( "Location: ../PHP/viewConsultant.php" );
+			header( "Location: viewConsultant.php" );
 		}
 	}
 
@@ -176,7 +176,7 @@ function validateProject( $saveaction ) {
 	}
 
 	$strClient_No = $_POST[ "strClient_No" ];
-	
+
 	//End of the validation code
 	//Now check if everything was ok and update the database if 
 	//it was (using functions in the db_functions file).
@@ -184,16 +184,16 @@ function validateProject( $saveaction ) {
 	if ( $booOk ) {
 
 		if ( $saveaction == "addRecord" ) {
-			console_log("insert");
+			console_log( "insert" );
 			insertProject();
 		} else {
-			console_log("update");
+			console_log( "update" );
 			updateProject();
 		}
 
 		if ( $booOk ) {
 			//Redirect to the view Consultant page if no errors occurred
-			header( "Location: ../PHP/viewProject.php" );
+			header( "Location: viewProject.php" );
 		}
 	}
 }
@@ -216,15 +216,15 @@ function validateProjectStaff( $saveaction ) {
 	} else {
 		$strDate_Assigned = $_POST[ "strDate_Assigned" ];
 	}
-	
-	if($_POST[ "strDate_Completed" ] == null) {
+
+	if ( $_POST[ "strDate_Completed" ] == null ) {
 		$strDate_Completed = "";
 	} else {
 		$strDate_Completed = $_POST[ "strDate_Completed" ];
 	}
 
 	if ( $_POST[ "strRole" ] == NULL ||
-		is_numeric( $_POST[ "strRole" ] )) {
+		is_numeric( $_POST[ "strRole" ] ) ) {
 		$booRole = 1;
 		$booOk = 0;
 	} else {
@@ -251,110 +251,113 @@ function validateProjectStaff( $saveaction ) {
 
 		/*if ( $booOk ) {
 			//Redirect to the view Consultant page if no errors occurred
-			header( "Location: ../PHP/viewProjectStaff.php" );
+			header( "Location: viewProjectStaff.php" );
 		}*/
 	}
 }
 
-function validateSignUp($saveaction) {
-	 // Define variables and initialize with empty values
-	console_log("in validation");
+function validateSignUp( $saveaction ) {
+	// Define variables and initialize with empty values
+	console_log( "in validation" );
 	global $dbConnection, $stmt;
-	global $userName, $passwordUser, $confirm_password, $userNameDB;
+	global $userName, $passwordUser, $confirm_password;
 	global $username_err, $password_err, $confirm_password_err;
-	
-	readQuery("d_users");
+
+	readQuery( "d_users" );
 	$numRecords = $stmt->rowCount();
-    // Validate username
-	if($_POST['userName'] == ""){
-        $username_err = "Please enter a username.";
-    } else if ($numRecords >= 1) {
-		console_log("after numrecords");
-     	//while($arrRows = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			if($userName == $arrRows['username']) {
-				console_log($userNameDB);
-				console_log("In the if");
-				$username_err = "This username is already taken.";
-				console_log($username_err);
-			} else {
-				$userName = $_POST["userName"];
-			}
-		//}
+	// Validate username
+	if ( $_POST[ 'userName' ] == "" ) {
+		console_log($_POST[ 'userName' ]);
+		$username_err = "Please enter a username.";
+	} else if ( $numRecords != 0 ) {
+		console_log( "after numrecords" );
+		//while($arrRows = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		if ( $_POST[ 'userName' ] == $arrRows[ 'username' ] ) {
+			console_log( "In the if" );
+			$username_err = "This username is already taken.";
+			console_log( $username_err );
+		} else {
+			$userName = $_POST[ "userName" ];
+			console_log("About to post", $userName);
+		}
+	} 
+	//}
+
+	// Validate password
+	if ( $_POST[ 'passwordUser' ] == "" ) {
+		$password_err = "Please enter a password.";
+	} else if ( $_POST[ 'passwordUser' ] < 6 ) {
+		$password_err = "Password must have atleast 6 characters.";
+	} else {
+		$passwordUser = $_POST[ 'passwordUser' ];
 	}
-    // Validate password
-    if ($_POST['passwordUser'] == "") {
-        $password_err = "Please enter a password.";     
-    } else if ($_POST['passwordUser'] < 6) {
-        $password_err = "Password must have atleast 6 characters.";
-    } else {
-        $passwordUser = $_POST['passwordUser'];
-    }
-    
-    // Validate confirm password
-    if($_POST["confirm_password"] == null){
-        $confirm_password_err = 'Please confirm password.';     
-    } else{
-        $confirm_password = $_POST['confirm_password'];
-        if($passwordUser != $confirm_password) {
-            $confirm_password_err = 'Password did not match.';
-        }
-    }
-	
-	console_log($userName, $passwordUser, $confirm_password);
-    // Check input errors before inserting in database
-    if($password_err == "" && $confirm_password_err == "") {
-		if($saveaction == "addRecord") {
-			console_log("about to insert");
+
+	// Validate confirm password
+	if ( $_POST[ "confirm_password" ] == null ) {
+		$confirm_password_err = 'Please confirm password.';
+	} else {
+		$confirm_password = $_POST[ 'confirm_password' ];
+		if ( $passwordUser != $confirm_password ) {
+			$confirm_password_err = 'Password did not match.';
+		}
+	}
+
+	console_log( $userName, $passwordUser, $confirm_password );
+	// Check input errors before inserting in database
+	if ($username_err == "" && $password_err == "" && $confirm_password_err == "" ) {
+		if ( $saveaction == "addRecord" ) {
+			console_log( "about to insert" );
 			insertLogin();
 		}
 	}
 }
 
-function validateLogin($saveaction) {
-	 // Define variables and initialize with empty values
-	console_log("in validation");
+function validateLogin( $saveaction ) {
+	// Define variables and initialize with empty values
+	console_log( "in validation" );
 	global $dbConnection, $stmt;
 	global $userName, $passwordUser, $confirm_password /*$cookie_name, $cookie_value*/;
 	global $username_err, $password_err, $confirm_password_err;
-	
-	readQuery("d_users");
+
+	readQuery( "d_users" );
 	$numRecords = $stmt->rowCount();
-    // Validate username
-	if($_POST['userName'] == "" || $_POST['passwordUser'] == ""){
-        $username_err = "Please enter a username.";
-    } else if ($numRecords >= 1) {
-		console_log("after numrecords");
-			if($userName == $arrRows['username'] && $passwordUser == $arrRows['password']) {
-				$userName = $_POST["userName"];
-				$passwordUser = $_POST["passwordUser"];
-			} else {
-				$username_err = "This username is already taken.";
-				$password_err = "Wrong password - Try Again.";
-			}
+	// Validate username
+	if ( $_POST[ 'userName' ] == "" || $_POST[ 'passwordUser' ] == "" ) {
+		$username_err = "Please enter a username.";
+	} else if ( $numRecords >= 1 ) {
+		console_log( "after numrecords" );
+		if ( $userName == $arrRows[ 'username' ] && $passwordUser == $arrRows[ 'password' ] ) {
+			$userName = $_POST[ "userName" ];
+			$passwordUser = $_POST[ "passwordUser" ];
+		} else {
+			$username_err = "This username is already taken.";
+			$password_err = "Wrong password - Try Again.";
+		}
 	}
-	
+
 	$cookie_name = "Dalton_IT_auth";
 	$cookie_value = $userName;
-	console_log($cookie_value);
-	setcookie($cookie_name, $cookie_value, time()+30*24*60*60); // 86400 = 1 day
-	console_log(setcookie());
-	console_log($cookie_value);
-	
-    // Validate password
-    if ($_POST['passwordUser'] == "") {
-        $password_err = "Please enter a password.";     
-    } else if ($_POST['passwordUser'] < 6) {
-        $password_err = "Password must have atleast 6 characters.";
-    } else {
-        $passwordUser = $_POST['passwordUser'];
-    }
-	
-	console_log($userName, $passwordUser, $confirm_password);
-    // Check input errors before inserting in database
-    if($username_err == "" && $password_err == "") {
-		if($saveaction == "login") {
-			console_log("about to redirect");
-			header('Location: ../index.php');
+	$path = "/assignement01";
+	console_log( $cookie_value );
+	setcookie( $cookie_name, $cookie_value, time() + 30 * 24 * 60 * 60, $path); // 86400 = 1 day
+	console_log( setcookie() );
+	console_log( $cookie_value );
+
+	// Validate password
+	if ( $_POST[ 'passwordUser' ] == "" ) {
+		$password_err = "Please enter a password.";
+	} else if ( $_POST[ 'passwordUser' ] < 6 ) {
+		$password_err = "Password must have atleast 6 characters.";
+	} else {
+		$passwordUser = $_POST[ 'passwordUser' ];
+	}
+
+	console_log( $userName, $passwordUser, $confirm_password );
+	// Check input errors before inserting in database
+	if ( $username_err == "" && $password_err == "" ) {
+		if ( $saveaction == "login" ) {
+			console_log( "about to redirect" );
+			header( 'Location: ../index.php' );
 		}
 	}
 }

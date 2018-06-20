@@ -16,7 +16,7 @@
 		<header> <a class="logo" title="Dalton It" href="../index.php"><span>Dalton It</span></a> </header>
 		<div class="main">
 			<h1>Enter your details to contact us</h1>
-			<form class="form" method="post" action="../../UniServerZ/www/assignment01/php/phpValidationForm.php">
+			<form class="form" method="post" action="phpValidationForm.php">
 				<p class="field required">
 					<label class="label required" for="txtName">Full name</label>
 					<input class="text-input" id="txtName" name="txtName" required type="text" value="">
@@ -34,14 +34,14 @@
 						</li>
 					</ul>
 				</div>
-				<p class="field half">
+				<p class="field">
 					<label class="label" for="txtCompany">Company Name</label>
 					<input class="text-input" id="txtCompany" name="txtCompany" required type="text" value="">
 				</p>
-				<p class="field half">
+				<p class="field">
 					<label class="label" for="select">Position</label>
 					<select class="select" id="select">
-						<option selected value=""></option>
+						<option selected value="">Select an option</option>
 						<option value="ceo">CEO</option>
 						<option value="front-end">Admin staff</option>
 						<option value="back-end">Employee</option>
@@ -135,26 +135,23 @@
 			<nav>
 				<ul>
 					<li>
-						<a title="About Us" href="html/aboutUs.php">About Us</a>
+						<a title="About Us" href="aboutUs.php">About Us</a>
 					</li>
 					<li>
-						<a title="Contact Us" href="html/contactUs.php">Contact Us</a>
+						<a title="Contact Us" href="contactUs.php">Contact Us</a>
 					</li>
 					<?php
 					//include some required files
 					require_once( "../DAL/db_functions.php" );
-					require_once( "BLL/validate_data.php" );
+					require_once( "../BLL/validate_data.php" );
 
 					global $_COOKIE;
 
 					if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
 						echo "<li>";
-						echo "<a title='Login' href='html/loginPage.php'>Login</a>";
+						echo "<a title='Login' href='loginPage.php'>Login</a>";
 						echo "</li>";
-						//echo "Cookie named '" . $cookie_name . "' is not set!";
 					} else {
-						//echo "Cookie '" . $cookie_name . "' is set!<br>";
-						//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
 						echo "<li>";
 						echo "<a title='View Consultant Records' href='../php/viewConsultant.php'>View Consultant</a>";
 						echo "</li>";
