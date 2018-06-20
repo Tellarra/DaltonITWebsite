@@ -130,11 +130,12 @@
 
 				global $_COOKIE;
 
-				if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
+				session_start();
+
+				if ( !isset( $_SESSION[ 'username' ] ) || empty( $_SESSION[ 'username' ] ) ) {
 					echo "<li>";
 					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
 					echo "</li>";
-					//echo "Cookie named '" . $cookie_name . "' is not set!";
 				} else {
 					//echo "Cookie '" . $cookie_name . "' is set!<br>";
 					//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];

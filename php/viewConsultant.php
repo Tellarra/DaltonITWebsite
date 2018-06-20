@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Dalton Consultant Details</title>
@@ -19,6 +20,11 @@
 
 		//Include files from the DAL
 		require_once( "../DAL/db_functions.php" );
+		require_once( "../BLL/validate_data.php" );
+		
+		if ( $_GET[ 'logOut' ] ) {
+			logOut();
+		}
 
 		//Run Query on BRANCH table
 		readQuery( "d_consultant" );
@@ -71,10 +77,12 @@
 			echo "<form action='../php/addConsultant.php' method='post'>";
 			echo "</div>";
 			echo "<input type='submit' value='Add a Consultant' class='btn btn-primary'/>";
-			echo "<input type='submit' name='logOut' value='Log out' class='btn btn-danger'/>";
+			echo "</form>";
+			echo "<form action='viewConsultant.php' method='GET'>";
+			echo "<br /><input type='submit' name='logOut' value='Log out' class='btn btn-danger'/>";
 			echo "</form>";
 			echo "<p></p>";
-			
+
 			//echo "<p></p><p>$numRecords Record Returned</p>";
 		}
 		?>
@@ -87,20 +95,11 @@
 					<a title="Contact Us" href="../html/contactUs.php">Contact Us</a>
 				</li>
 				<?php
-				//include some required files
-				require_once( "../DAL/db_functions.php" );
-				require_once( "../BLL/validate_data.php" );
+				session_start();
 				
-				if($_POST['logOut']) {
-					if(isset($_COOKIE['Dalton_IT_auth'])) {
-        				setcookie('Dalton_IT_auth', '', time()-7000000, '/assignement01');
-					}
-				}
-				global $_COOKIE;
-
-				if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
+				if ( !isset( $_SESSION[ 'username' ] ) || empty( $_SESSION[ 'username' ] ) ) {
 					echo "<li>";
-					echo "<a title='Login' href='../html/loginPage.php'>Login</a>";
+					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
 					echo "</li>";
 				} else {
 					echo "<li>";
@@ -127,4 +126,5 @@
 			</div>
 		</footer>
 </body>
+
 </html>

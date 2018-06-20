@@ -62,9 +62,9 @@
 				require_once( "../DAL/db_functions.php" );
 				require_once( "../BLL/validate_data.php" );
 
-				global $_COOKIE;
+				session_start();
 
-				if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
+				if ( !isset( $_SESSION[ 'username' ] ) || empty( $_SESSION[ 'username' ] ) ) {
 					echo "<li>";
 					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
 					echo "</li>";

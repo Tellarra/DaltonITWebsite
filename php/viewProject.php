@@ -20,10 +20,14 @@
 
 		//Include files from the DAL
 		require_once( "../DAL/db_functions.php" );
-
+		
+		if ( $_GET[ 'logOut' ] ) {
+			logOut();
+		}
+		
 		//Run Query on BRANCH table
 		readQuery( "d_project" );
-
+		
 		//If there are any branch details/records in the database then continue
 		if ( $numRecords === 0 ) {
 			echo "<p>No Project Found!</p>";
@@ -70,8 +74,11 @@
 
 			echo "</table>";
 			echo "<form action='../php/addProject.php' method='post'>";
-			echo "<input type='submit' class='btn btn-primary' value='Add a Project' />";
 			echo "</div>";
+			echo "<input type='submit' class='btn btn-primary' value='Add a Project' />";
+			echo "</form>";
+			echo "<form action='viewProject.php' method='GET'>";
+			echo "<br /><input type='submit' name='logOut' value='Log out' class='btn btn-danger'/>";
 			echo "</form>";
 			//echo "<p></p><p>$numRecords Record Returned</p>";
 		}
@@ -89,9 +96,9 @@
 				require_once( "../DAL/db_functions.php" );
 				require_once( "../BLL/validate_data.php" );
 
-				global $_COOKIE;
-
-				if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
+				session_start();
+				
+				if ( !isset( $_SESSION[ 'username' ] ) || empty( $_SESSION[ 'username' ] ) ) {
 					echo "<li>";
 					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
 					echo "</li>";

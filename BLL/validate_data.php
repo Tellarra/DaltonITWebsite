@@ -267,7 +267,7 @@ function validateSignUp( $saveaction ) {
 	$numRecords = $stmt->rowCount();
 	// Validate username
 	if ( $_POST[ 'userName' ] == "" ) {
-		console_log($_POST[ 'userName' ]);
+		console_log( $_POST[ 'userName' ] );
 		$username_err = "Please enter a username.";
 	} else if ( $numRecords != 0 ) {
 		console_log( "after numrecords" );
@@ -278,9 +278,9 @@ function validateSignUp( $saveaction ) {
 			console_log( $username_err );
 		} else {
 			$userName = $_POST[ "userName" ];
-			console_log("About to post", $userName);
+			console_log( "About to post", $userName );
 		}
-	} 
+	}
 	//}
 
 	// Validate password
@@ -304,7 +304,7 @@ function validateSignUp( $saveaction ) {
 
 	console_log( $userName, $passwordUser, $confirm_password );
 	// Check input errors before inserting in database
-	if ($username_err == "" && $password_err == "" && $confirm_password_err == "" ) {
+	if ( $username_err == "" && $password_err == "" && $confirm_password_err == "" ) {
 		if ( $saveaction == "addRecord" ) {
 			console_log( "about to insert" );
 			insertLogin();
@@ -318,6 +318,7 @@ function validateLogin( $saveaction ) {
 	global $dbConnection, $stmt;
 	global $userName, $passwordUser, $confirm_password /*$cookie_name, $cookie_value*/;
 	global $username_err, $password_err, $confirm_password_err;
+	global $_COOKIE;
 
 	readQuery( "d_users" );
 	$numRecords = $stmt->rowCount();
@@ -335,15 +336,6 @@ function validateLogin( $saveaction ) {
 		}
 	}
 
-	$cookie_name = "Dalton_IT_auth";
-	$cookie_value = $userName;
-	$path = "/assignement01";
-	console_log( $cookie_value );
-	setcookie( $cookie_name, $cookie_value, time() + 30 * 24 * 60 * 60, $path); // 86400 = 1 day
-	console_log( setcookie() );
-	console_log( $cookie_value );
-
-	// Validate password
 	if ( $_POST[ 'passwordUser' ] == "" ) {
 		$password_err = "Please enter a password.";
 	} else if ( $_POST[ 'passwordUser' ] < 6 ) {
@@ -351,14 +343,25 @@ function validateLogin( $saveaction ) {
 	} else {
 		$passwordUser = $_POST[ 'passwordUser' ];
 	}
-
-	console_log( $userName, $passwordUser, $confirm_password );
+	
+	session_start();
+    $_SESSION['username'] = $userName;
 	// Check input errors before inserting in database
 	if ( $username_err == "" && $password_err == "" ) {
 		if ( $saveaction == "login" ) {
 			console_log( "about to redirect" );
-			header( 'Location: ../index.php' );
+			//header( 'Location: ../index.php' );
 		}
 	}
+}
+
+function logOut() {
+	session_start();
+ 
+	// Unset all of the session variables
+	$_SESSION = array();
+ 
+	// Destroy the session.
+	session_destroy();
 }
 ?>

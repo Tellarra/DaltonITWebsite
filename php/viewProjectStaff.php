@@ -23,7 +23,12 @@
 			//Include files from the DAL
 			require_once( "../DAL/db_functions.php" );
 			require_once( "../BLL/validate_data.php" );
-
+			
+			if ( $_POST[ 'logOut' ] ) {
+				console_log("in log out");
+				logOut();
+			}
+			
 			readQuery( "d_project" );
 			//console_log($sqlStr);
 			//If there are any details/records in the database then continue
@@ -47,7 +52,8 @@
 						echo "<option value=\"{$arrRows['Project_No']}\">{$arrRows['Project_No']} - {$arrRows['Project_Name']}</option>";
 					}
 					echo "</select>";
-					echo "<input type='submit' style='margin-top:40px;' class='button' name='btnShow' value='Show the project'/></div>";
+					echo "<input type='submit' style='margin-top:40px;' class='btn btn-primary' name='btnShow' value='Show the project'/>";
+					echo "<input style='margin-top:40px;' type='submit' name='logOut' value='Log out' class='btn btn-danger'/>";
 				}
 
 				//echo "</p>";
@@ -94,54 +100,16 @@
 						echo "<td>" . $arrRows[ 'Role' ] . "</td>";
 						echo "<td>" . $arrRows[ 'Hours_Worked' ] . "</td>";
 
-
-						//Later will add code here to edit and delete this record
 						echo "<td><a href='editProjectStaff.php?ID=$arrRows[Project_No]' style='color:black;'>Edit</a>";
 						echo "<br /><a href='../BLL/delete_confirm_project_staff.php?TYPE=Project_No&amp;ID=$arrRows[Project_No]' style='color:black;'>Delete</a></td></tr>";
 					}
-
 					echo "</table>";
-
 				}
 				echo "<form action='../php/addProjectStaff.php' method='post'>";
 				echo "<input type='hidden' name='strProject_No' value='" . $Project_No . "' />";
 				echo "<input type='submit' class='btn btn-primary' value='Add a Project Staff' />";
 				echo "</form>";
-
-				//echo "<input id='assignConsultant' class='floatLeft' type='submit' value='Assign a Consultant' />";
 			}
-			//Create Table and Heading
-			/*echo "<table class='table table-stripped table-bordered' id='dalton' border='1' width='100%'>";
-			echo "<tr>";
-			echo "<th>Consultant_Id</th>";
-			echo "<th>Project_No</th>";
-			echo "<th>Date_Assigned</th>";
-			echo "<th>Date_Completed</th>";
-			echo "<th>Role</th>";
-			echo "<th>Hours_Worked</th>";
-			echo "<th></th>";
-			echo "</tr>";
-
-			//Loop through branches and add row to table for each record
-			while ( $arrRows = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-				echo "<tr>";
-				echo "<td>" . $arrRows[ 'Consultant_Id' ] . "</td>";
-				echo "<td>" . $arrRows[ 'Project_No' ] . "</td>";
-				echo "<td>" . $arrRows[ 'Date_Assigned' ] . "</td>";
-				echo "<td>" . $arrRows[ 'Date_Completed' ] . "</td>";
-				echo "<td>" . $arrRows[ 'Role' ] . "</td>";
-				echo "<td>" . $arrRows[ 'Hours_Worked' ] . "</td>";
-
-
-				//Later will add code here to edit and delete this record
-				echo "<td><a href='editProjectStaff.php?ID=$arrRows[Project_No]' style='color:black;'>Edit</a>";
-				echo "<br /><a href='../BLL/delete_confirm_project_staff.php?TYPE=Project_No&amp;ID=$arrRows[Project_No]' style='color:black;'>Delete</a></td></tr>";
-			}
-
-			echo "</table>";
-			echo "<form action='../php/addProjectStaff.php' method='post'>";
-			echo "<input type='submit' class='btn btn-primary' value='Add a Project Staff' />";
-			echo "</form>";*/
 			?>
 			<nav>
 				<ul>
@@ -156,13 +124,12 @@
 					//require_once( "../DAL/db_functions.php" );
 					require_once( "../BLL/validate_data.php" );
 
-					global $_COOKIE;
+					session_start();
 
-					if ( !isset( $_COOKIE[ 'Dalton_IT_auth' ] ) ) {
+					if ( !isset( $_SESSION[ 'username' ] ) || empty( $_SESSION[ 'username' ] ) ) {
 						echo "<li>";
 						echo "<a title='Login' href='html/loginPage.php'>Login</a>";
 						echo "</li>";
-						//echo "Cookie named '" . $cookie_name . "' is not set!";
 					} else {
 						//echo "Cookie '" . $cookie_name . "' is set!<br>";
 						//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
@@ -190,4 +157,5 @@
 			</footer>
 		</div>
 </body>
+
 </html>

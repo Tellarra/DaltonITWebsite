@@ -51,32 +51,31 @@
 					<a title="Contact Us" href="html/contactUs.php">Contact Us</a>
 				</li>
 				<?php
-					//include some required files
-					require_once( "../DAL/db_functions.php" );
-					require_once( "BLL/validate_data.php" );
+				//include some required files
+				require_once( "../DAL/db_functions.php" );
+				require_once( "BLL/validate_data.php" );
 
-					global $_COOKIE;
+				session_start();
+				
+				if ( !isset( $_SESSION[ 'username' ] ) || empty( $_SESSION[ 'username' ] ) ) {
+					echo "<li>";
+					echo "<a title='Login' href='html/loginPage.php'>Login</a>";
+					echo "</li>";
+				} else {
+					//echo "Cookie '" . $cookie_name . "' is set!<br>";
+					//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
+					echo "<li>";
+					echo "<a title='View Consultant Records' href='php/viewConsultant.php'>View Consultant</a>";
+					echo "</li>";
 
-					if ( !isset( $_COOKIE['Dalton_IT_auth'] ) ) {
-						echo "<li>";
-						echo "<a title='Login' href='html/loginPage.php'>Login</a>";
-						echo "</li>";
-						//echo "Cookie named '" . $cookie_name . "' is not set!";
-					} else {
-						//echo "Cookie '" . $cookie_name . "' is set!<br>";
-						//echo "Value is: " . $_COOKIE['Dalton_IT_auth'];
-						echo "<li>";
-						echo "<a title='View Consultant Records' href='php/viewConsultant.php'>View Consultant</a>";
-						echo "</li>";
-						
-						echo "<li>";
-						echo "<a title='View Project Records' href='php/viewProject.php'>View Project</a>";
-						echo "</li>";
-						
-						echo "<li>";
-						echo "<a title='View Project Consultant Record' href='php/viewProjectStaff.php'>View Project Consultant</a>";
-						echo "</li>";
-					}
+					echo "<li>";
+					echo "<a title='View Project Records' href='php/viewProject.php'>View Project</a>";
+					echo "</li>";
+
+					echo "<li>";
+					echo "<a title='View Project Consultant Record' href='php/viewProjectStaff.php'>View Project Consultant</a>";
+					echo "</li>";
+				}
 				?>
 			</ul>
 		</nav>
